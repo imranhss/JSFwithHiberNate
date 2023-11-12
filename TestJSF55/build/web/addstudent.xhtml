@@ -1,28 +1,69 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
+        
+        <h:panelGrid>
+            <h:commandButton action="viewallstudent.xhtml" value="View All"></h:commandButton>
+        </h:panelGrid> 
         <h:form>
-            <h:outputLabel>Given Name</h:outputLabel>
+            <h:outputLabel>Given Name </h:outputLabel>
             <h:inputText value="#{studentManageBean.student.givenName}"></h:inputText>
             <br/>
-            <h:outputLabel>Last Name</h:outputLabel>
+            <h:outputLabel>Last Name </h:outputLabel>
             <h:inputText value="#{studentManageBean.student.lastName}"></h:inputText>
-             <br/>
-            <h:outputLabel>Gender</h:outputLabel>
-            <h:inputText value="#{studentManageBean.student.gender}"></h:inputText>
-             <br/>
-            <h:outputLabel>Subject</h:outputLabel>
-            <h:inputText value="#{studentManageBean.student.subject}"></h:inputText>
-             <br/>
-             
-             <h:commandButton action="#{studentManageBean.saveStudent()}" value="Save"></h:commandButton>
+            <br/>
+            <h:outputLabel>Gender  </h:outputLabel>
+            
+            <h:selectOneRadio value="#{studentManageBean.student.gender}">
+                <f:selectItem itemValue = "Male" itemLabel = "Male" /> 
+                <f:selectItem itemValue = "Female" itemLabel = "Female" />
+            </h:selectOneRadio>
+
+
+            <h:outputLabel>Subject </h:outputLabel>
+            <h:selectOneMenu value="#{studentManageBean.student.subject}">
+                <f:selectItem itemValue="JEE" itemLabel="JEE" />
+                <f:selectItem itemValue="C#" itemLabel="C#" />
+                <f:selectItem itemValue="NT" itemLabel="NT" />
+            </h:selectOneMenu>
+
+            <br/>
+            <h:commandButton action="#{studentManageBean.saveStudent()}" value="Save"></h:commandButton>
         </h:form>
         
+        
+        <h:panelGrid>
+            <h:dataTable value="#{studentManageBean.showAllStudent()}" var="student">
+            <h:column>    				
+                <f:facet name = "header">Given Name</f:facet>    				
+                    #{studentManageBean.student.givenName}
+            </h:column>
+            
+            <h:column>    				
+                <f:facet name = "header">Last Name</f:facet>    				
+                    #{studentManageBean.student.lastName}
+            </h:column>
+
+            <h:column>    				
+                <f:facet name = "header">Gender</f:facet>    				
+                    #{studentManageBean.student.gender}
+            </h:column>
+
+            <h:column>    				
+                <f:facet name = "header">Subject</f:facet>    				
+                    #{studentManageBean.student.subject}
+            </h:column>
+
+
+        </h:dataTable> 
+        </h:panelGrid>
+
     </h:body>
 </html>
 

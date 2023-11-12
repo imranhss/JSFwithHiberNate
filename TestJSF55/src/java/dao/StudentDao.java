@@ -1,15 +1,12 @@
 package dao;
 
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.ManagedBean;
 import model.Student;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import util.DbCon;
 import util.HibernateUtil;
 
 
@@ -29,6 +26,7 @@ public class StudentDao {
             t.commit();
            
             return true;
+            
         } catch (Exception e) {
             e.printStackTrace();
             t.rollback();

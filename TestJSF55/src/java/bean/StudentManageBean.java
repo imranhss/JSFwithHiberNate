@@ -44,7 +44,13 @@ public class StudentManageBean {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Data Not Saved", ""));
         }
    
-   } 
+   }
+   
+   
+   public void showAllStudent(){
+       StudentDao dao=new StudentDao();
+       dao.viewAllStudent();       
+   }
     
 
    
