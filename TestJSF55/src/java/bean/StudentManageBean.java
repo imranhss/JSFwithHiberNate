@@ -6,6 +6,7 @@
 package bean;
 
 import dao.StudentDao;
+import java.util.List;
 import javax.faces.application.FacesMessage;
 
 import javax.faces.bean.ManagedBean;
@@ -47,9 +48,10 @@ public class StudentManageBean {
    }
    
    
-   public void showAllStudent(){
+   public List<Student> showAllStudent(){
        StudentDao dao=new StudentDao();
-       dao.viewAllStudent();       
+       List<Student> stlist=dao.viewAllStudent();
+      return stlist;             
    }
     
 

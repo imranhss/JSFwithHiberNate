@@ -7,7 +7,7 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        
+
         <h:panelGrid>
             <h:commandButton action="viewallstudent.xhtml" value="View All"></h:commandButton>
         </h:panelGrid> 
@@ -19,7 +19,7 @@
             <h:inputText value="#{studentManageBean.student.lastName}"></h:inputText>
             <br/>
             <h:outputLabel>Gender  </h:outputLabel>
-            
+
             <h:selectOneRadio value="#{studentManageBean.student.gender}">
                 <f:selectItem itemValue = "Male" itemLabel = "Male" /> 
                 <f:selectItem itemValue = "Female" itemLabel = "Female" />
@@ -36,32 +36,40 @@
             <br/>
             <h:commandButton action="#{studentManageBean.saveStudent()}" value="Save"></h:commandButton>
         </h:form>
-        
-        
+
+
         <h:panelGrid>
-            <h:dataTable value="#{studentManageBean.showAllStudent()}" var="student">
-            <h:column>    				
-                <f:facet name = "header">Given Name</f:facet>    				
-                    #{studentManageBean.student.givenName}
-            </h:column>
-            
-            <h:column>    				
-                <f:facet name = "header">Last Name</f:facet>    				
-                    #{studentManageBean.student.lastName}
-            </h:column>
+            <h:dataTable value="#{studentManageBean.showAllStudent()}" var="s">
+                <h:column>    				
+                    <f:facet name = "header">Id</f:facet>    				
+                        #{s.id}
+                </h:column>
+                <h:column>    				
+                    <f:facet name = "header">Given Name</f:facet>    				
+                        #{s.givenName}
+                </h:column>
 
-            <h:column>    				
-                <f:facet name = "header">Gender</f:facet>    				
-                    #{studentManageBean.student.gender}
-            </h:column>
+                <h:column>    				
+                    <f:facet name = "header">Last Name</f:facet>    				
+                        #{s.lastName}
+                </h:column>
 
-            <h:column>    				
-                <f:facet name = "header">Subject</f:facet>    				
-                    #{studentManageBean.student.subject}
-            </h:column>
+                <h:column>    				
+                    <f:facet name = "header">Gender</f:facet>    				
+                        #{s.gender}
+                </h:column>
+
+                <h:column>    				
+                    <f:facet name = "header">Subject</f:facet>    				
+                        #{s.subject}
+                </h:column>
+                <h:column>    				
+                    <f:facet name = "header">Action</f:facet>    				
+                       
+                </h:column>
 
 
-        </h:dataTable> 
+            </h:dataTable>  
         </h:panelGrid>
 
     </h:body>

@@ -9,25 +9,29 @@
     <h:body>
         Hello from Facelets
 
-        <h:dataTable value="#{studentManageBean.showAllStudent()}" var="student">
+        <h:dataTable value="#{studentManageBean.showAllStudent()}" var="s">
+            <h:column>    				
+                <f:facet name = "header">Id</f:facet>    				
+                    #{s.id}
+            </h:column>
             <h:column>    				
                 <f:facet name = "header">Given Name</f:facet>    				
-                    #{studentManageBean.student.givenName}
+                    #{s.givenName}
             </h:column>
             
             <h:column>    				
                 <f:facet name = "header">Last Name</f:facet>    				
-                    #{studentManageBean.student.lastName}
+                    #{s.lastName}
             </h:column>
 
             <h:column>    				
                 <f:facet name = "header">Gender</f:facet>    				
-                    #{studentManageBean.student.gender}
+                    #{s.gender}
             </h:column>
 
             <h:column>    				
                 <f:facet name = "header">Subject</f:facet>    				
-                    #{studentManageBean.student.subject}
+                    #{s.subject}
             </h:column>
 
 
