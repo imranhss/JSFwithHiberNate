@@ -39,7 +39,7 @@
 
 
         <h:panelGrid>
-            <h:dataTable value="#{studentManageBean.showAllStudent()}" var="s">
+            <h:dataTable value="#{studentManageBean.showAllStudent()}" var="s" id="dataTableId">
                 <h:column>    				
                     <f:facet name = "header">Id</f:facet>    				
                         #{s.id}
@@ -65,7 +65,8 @@
                 </h:column>
                 <h:column>    				
                     <f:facet name = "header">Action</f:facet>    				
-                       
+                    <h:commandButton value="Delete" action="#{studentManageBean.delete(s.id)}" />
+                   
                 </h:column>
 
 

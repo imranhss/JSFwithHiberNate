@@ -35,7 +35,7 @@ public class StudentDao {
         return false;
     }
 
-    public void deleteStudent(int id) {
+    public boolean deleteStudent(int id) {
         Transaction t = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
 
@@ -44,10 +44,11 @@ public class StudentDao {
             Student stud = (Student) session.load(Student.class, new Integer(id));
             session.delete(stud);
             t.commit();
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        return false;
     }
 
     public List<Student> getbyID(int id) {
@@ -79,9 +80,9 @@ public class StudentDao {
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
         List<Student> sList = session.createQuery("SELECT s FROM Student s").list();
-        
-        sList.toString();        
-   
+
+        sList.toString();
+
         return sList;
 
     }
