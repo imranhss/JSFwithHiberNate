@@ -19,7 +19,7 @@ public class StudentDao {
 
         try {
             t = session.beginTransaction();
-            session.save(s);
+            session.saveOrUpdate(s);
             t.commit();
 
             return true;
@@ -48,32 +48,36 @@ public class StudentDao {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        finally{
+            session.close();
+        }
+        
         return false;
     }
 
-    public List<Student> getbyID(int id) {
-
-        Student student = new Student();
-        List<Student> sList = new ArrayList<Student>();
-
-        Transaction trans = null;
-        Session session = HibernateUtil.getSessionFactory().openSession();
-
-        try {
-            trans = session.beginTransaction();
-
-            Query query = session.createQuery("from Student where id= :id");
-            query.setInteger("id", id);
-            student = (Student) query.uniqueResult();
-            sList = query.list();
-
-            trans.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return sList;
-    }
+//    public List<Student> getbyID(int id) {
+//
+//        Student student = new Student();
+//        List<Student> sList = new ArrayList<Student>();
+//
+//        Transaction trans = null;
+//        Session session = HibernateUtil.getSessionFactory().openSession();
+//
+//        try {
+//            trans = session.beginTransaction();
+//
+//            Query query = session.createQuery("from Student where id= :id");
+//            query.setInteger("id", id);
+//            student = (Student) query.uniqueResult();
+//            sList = query.list();
+//
+//            trans.commit();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        return sList;
+//    }
 
     public List<Student> viewAllStudent() {
 
@@ -96,8 +100,33 @@ public class StudentDao {
             trans.commit();
         } catch (Exception e) {
             e.printStackTrace();
+            trans.rollback();
+        }
+        finally{
+        session.close();
         }
 
     }
+    
+    
+       public Student getStudentById(int id){
+    	System.out.println("Get employee by Id = " +id+ "\n.....................");
+        Session session = null;
+        Student stu = null;
+        try {
+        	
+            session = HibernateUtil.getSessionFactory().openSession();
+            stu = (Student) session.get(Student.class, id);
+ 
+        } catch(Exception ex) {
+            ex.printStackTrace();
+            // handle exception here
+        } finally {
+            try {if(session != null) session.close();} catch(Exception ex) {}
+        }
+        return stu;
+    }
+       
+       
 
 }

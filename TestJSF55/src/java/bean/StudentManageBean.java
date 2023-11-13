@@ -33,16 +33,17 @@ public class StudentManageBean {
         this.student = student;
     }
 
-    public void saveStudent() {
+    public String saveStudent() {
         StudentDao dao = new StudentDao();
         boolean status = dao.addStudent(student);
 
         if (status) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Data Saved", ""));
+            return "index.xhtml?faces-redirect=true";
         } else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Data Not Saved", ""));
         }
-
+        return null;
     }
 
     public List<Student> showAllStudent() {
@@ -52,27 +53,39 @@ public class StudentManageBean {
     }
 
     public void delete(int id) {
-        StudentDao sdao = new StudentDao();
-        boolean status = sdao.deleteStudent(id);
+        StudentDao dao = new StudentDao();
+        boolean status = dao.deleteStudent(id);
 
         if (status) {
-            // Add a faces message for success
+
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_INFO, "Delete successful!", null));
-
-            // Redirect to addstudent.xhtml
             try {
                 ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-                externalContext.redirect("addstudent.xhtml");
+                externalContext.redirect("index.xhtml");
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } else {
-            // Add a faces message for failure
+
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Delete failed!", null));
         }
 
     }
+    
+    public String editStudent(int id) {
+        StudentDao dao = new StudentDao();
+        student= dao.getStudentById(id);
+
+        if (student != null) {
+            FacesContext.getCurrentInstance().getExternalContext().getFlash().put("student", student);
+            return "editstudent.xhtml?faces-redirect=true";
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Product not found", ""));
+            return null;
+        }
+    }
+    
 
 }

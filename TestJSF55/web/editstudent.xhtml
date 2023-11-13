@@ -12,6 +12,7 @@
             <h:commandButton action="viewallstudent.xhtml" value="View All"></h:commandButton>
         </h:panelGrid> 
         <h:form>
+            <h:inputHidden value="#{studentManageBean.student.id}" />
             <h:outputLabel>Given Name </h:outputLabel>
             <h:inputText value="#{studentManageBean.student.givenName}"></h:inputText>
             <br/>
@@ -34,7 +35,7 @@
             </h:selectOneMenu>
 
             <br/>
-            <h:commandButton action="#{studentManageBean.saveStudent()}" value="Save"></h:commandButton>
+            <h:commandButton action="#{studentManageBean.saveStudent()}" value="Update"></h:commandButton>
         </h:form>
 
 

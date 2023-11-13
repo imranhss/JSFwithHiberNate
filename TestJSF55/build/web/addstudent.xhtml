@@ -38,40 +38,7 @@
         </h:form>
 
 
-        <h:panelGrid>
-            <h:dataTable value="#{studentManageBean.showAllStudent()}" var="s" id="dataTableId">
-                <h:column>    				
-                    <f:facet name = "header">Id</f:facet>    				
-                        #{s.id}
-                </h:column>
-                <h:column>    				
-                    <f:facet name = "header">Given Name</f:facet>    				
-                        #{s.givenName}
-                </h:column>
-
-                <h:column>    				
-                    <f:facet name = "header">Last Name</f:facet>    				
-                        #{s.lastName}
-                </h:column>
-
-                <h:column>    				
-                    <f:facet name = "header">Gender</f:facet>    				
-                        #{s.gender}
-                </h:column>
-
-                <h:column>    				
-                    <f:facet name = "header">Subject</f:facet>    				
-                        #{s.subject}
-                </h:column>
-                <h:column>    				
-                    <f:facet name = "header">Action</f:facet>    				
-                    <h:commandButton value="Delete" action="#{studentManageBean.delete(s.id)}" />
-                   
-                </h:column>
-
-
-            </h:dataTable>  
-        </h:panelGrid>
+        
 
     </h:body>
 </html>
